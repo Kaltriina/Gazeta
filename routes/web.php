@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Route;
 
 
 
@@ -24,11 +26,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('users/index', 'UserController@index');
-
 Route::get('users/create', 'UserController@create');
 Route::post('users/store', 'UserController@store');
-
-
 Route::get('users/{id}/edit', 'UserController@edit');
 Route::post('users/{id}/update', 'UserController@update')->name('userController.update');
 Route::post('users/{id}/delete', 'UserController@delete')->name('userController.delete');
+Route::get('users/{id}/show', 'UserController@show');
+
+Route::get('posts', 'PostController@index');
+Route::get('posts/index','PostController@index');
+Route::get('posts/create','PostController@create');
+Route::post('posts/store','PostController@store');
+Route::post('posts/{id}/update', 'PostController@update')->name('postController.update');
+Route::get('posts/{id}/show','PostController@show');
+Route::get('posts/{id}/edit', 'PostController@edit');
+Route::post('posts/{id}/destroy', 'PostController@destroy');

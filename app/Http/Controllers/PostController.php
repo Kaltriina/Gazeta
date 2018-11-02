@@ -4,19 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
+use App\Category;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
-    }
 
+        $posts = Post::orderBy('id', 'DESC')->get();
+        return view ('post.index',['posts' => $posts]);
+    }
+ 
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('post.create');
     }
 
     /**
@@ -35,7 +35,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store = new Post; 
+        
+        if($request->hasFile('photo')) 
+        {
+        $image = $request->file('images');
+        $new_name = $image->getClientOriginalName();
+        $image->move(public_path('images'), $new_name);   
+        $store->images = $new_name; 
+        }
+        
+        $store->title = $request['title'];
+        $store->content = $request['content'];
+        
+        $store->user_id = Auth::id();
+        $store->save();     
+        return redirect('posts/index');
     }
 
     /**
@@ -44,9 +59,11 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Request $request, $id)
     {
-        //
+        $show = Post::find($id);
+
+        return view('post.show', compact('show'));
     }
 
     /**
@@ -55,9 +72,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $posts = Post::find($id);
+        return view('post.edit', compact('posts'));
     }
 
     /**
@@ -67,9 +85,20 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        $update = Post::find($id);
+
+        $image = $request->file('images');
+        $new_name = $image->getClientOriginalName();
+        $image->move(public_path('images'), $new_name);  
+        
+        $update->title = $request['title'];
+        $update->content = $request['content'];
+        $update->images= $new_name;
+        $update->save();
+
+        return redirect('posts/index');
     }
 
     /**
@@ -78,8 +107,12 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Request $request, $id)
     {
-        //
+        $destroy = Post::find($id);
+
+        $destroy->delete();
+
+        return redirect('posts/index');
     }
 }

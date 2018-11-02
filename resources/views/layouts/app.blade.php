@@ -33,9 +33,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                            <button>
+                           
                                     <a class="btn btn-primary" href="{{action('UserController@index')}}" role="button">Click</a> 
-                            </button> 
+                           
+                                    <a class="btn btn-secondary" href="{{action('PostController@index')}}" role="button">Post</a>
+                      
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -73,7 +75,6 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>

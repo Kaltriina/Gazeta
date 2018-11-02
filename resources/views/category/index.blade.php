@@ -7,9 +7,8 @@
 			<tr>
 			<a class="btn btn-primary" href="{{action('PostController@create')}}" role="button">Add Post </a>
 				<th>Id</th>
-				<th>Title</th>
-				<th>Content</th>
-				<th>Image</th>
+                <th>Title</th>
+                
 				<th>Created at</th>
 				<th>Edit</th>
 				<th>Delete</th>
@@ -17,10 +16,10 @@
 		</thead>
 
 		<tbody>
-			@foreach ($posts as $post)
+			@foreach ($categories as $category)
 				<tr>
 					<td>{{$post->id}}</td>
-				<td><a href="{{action('PostController@show', $post->id)}}"> {{$post->title}}</a></td>
+				<td><a href="{{action('CategoryController@show', $post->id)}}"> {{$post->title}}</a></td>
 					<td>{{$post->content}}</td>
 					<td>
 						<div class="row">

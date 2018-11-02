@@ -3,19 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\User;
 
 class UserController extends Controller
 {
     public function index()
     {
-            $users = User::all();
-            return view('users.index', ['users' => $users]);
+        $users = User::all();
+        return view('users.index', ['users' => $users]);
     }
 
-    public function show(Request $request)
+    public function show(Request $request, $id)
     {
-        return view('users.index');       
+        $show = User::find($id);
+
+        return view('users.show', compact('show'));       
     }
 
     public function create()
@@ -25,15 +28,14 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $users = User::find($id);    
-         
+        $users = User::find($id);        
         return view('users.edit', compact('users'));        
     }
 
     public function store(Request $request)
     {
         User::created([
-            'name' => $request->name,
+            'name' =>$request->name,
             'email'=>$request->email
         ]);
 
@@ -54,10 +56,6 @@ class UserController extends Controller
     public function delete(Request $request, $id)
     {
         $delete = User::find($id);
-
-        $delete->name = $request['name'];
-        
-        $delete->email = $request['email'];
         
         $delete->delete();
 

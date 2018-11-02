@@ -18,9 +18,9 @@
         @foreach ($users as $user)
         <tr>
           <td> {{ $user->id}}</td>
-          <td>{{ $user->name}}</td>
+          <td><a href="{{action('UserController@show', $user->id)}}">{{ $user->name}}</a></td>
           <td>{{ $user->email}}</td> 
-          <td>{{$user->created_at}}</td>
+          <td>{{$user->created_at->diffForHumans()}}</td>
           <td><a class="btn btn-primary" href="/users/{{$user->id}}/edit" role="button">Edit</a></td>
           <td>
             <form method="POST" action="{{ route('userController.delete', [$user->id]) }}">              
@@ -29,8 +29,7 @@
             </form>
           </td>
         </tr>
-        @endforeach
-        
+        @endforeach        
         </tbody>
       </table> 
     </div>           

@@ -1,0 +1,10 @@
+
+CRUD
+
+Create - regjistro users ne db
+
+Read - paraqiti te gjitha userat ne nje list
+
+Update - perdriteso te dhenat ne db 
+
+Delete - kur une e fshije mu hek prej db

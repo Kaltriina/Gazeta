@@ -16,7 +16,6 @@
                         <label for="">Email Address:</label>
                         <input type="text" class="form-control" name="email">
                 </div>
-
                 <button class="btn btn-primary">Submit</button>
             </form> 
             </div>
