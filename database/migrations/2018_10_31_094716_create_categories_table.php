@@ -15,12 +15,10 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');   
-            $table->unsignedInteger('post_id');         
+            $table->string('name');         
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

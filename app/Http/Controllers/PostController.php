@@ -24,7 +24,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        $categories = Category::all();
+        return view('post.create',['categories' => $categories]);
     }
 
     /**
@@ -34,7 +35,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
         $store = new Post; 
         
         if($request->hasFile('photo')) 
@@ -49,6 +50,7 @@ class PostController extends Controller
         $store->content = $request['content'];
         
         $store->user_id = Auth::id();
+        $store->category_id = $request->input('category'); 
         $store->save();     
         return redirect('posts/index');
     }

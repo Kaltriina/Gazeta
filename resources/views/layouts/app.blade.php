@@ -34,10 +34,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                            
-                                    <a class="btn btn-primary" href="{{action('UserController@index')}}" role="button">Click</a> 
-                           
-                                    <a class="btn btn-secondary" href="{{action('PostController@index')}}" role="button">Post</a>
-                      
+                                    <a class="btn btn-primary" href="{{action('UserController@index')}}" role="button">Click</a>&nbsp;
+                                  
+                                    <a class="btn btn-primary" href="{{action('PostController@index')}}" role="button">Post</a>&nbsp;
+
+                                    <a class="btn btn-primary" href="{{action('CategoryController@index')}}" role="button">Category</a>                      
                     </ul>
 
                     <!-- Right Side Of Navbar -->

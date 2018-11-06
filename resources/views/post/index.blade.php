@@ -11,8 +11,10 @@
 				<th>Content</th>
 				<th>Image</th>
 				<th>Created at</th>
+				@if(\Auth::check())
 				<th>Edit</th>
 				<th>Delete</th>
+				@endif
 			</tr>
 		</thead>
 
@@ -30,13 +32,15 @@
 						</div>
 					</td>
 					<td>{{$post->created_at->diffForHumans()}}</td>
+				@if(\Auth::check())
 				<td><a class="btn btn-primary" href="{{action('PostController@edit', $post->id)}}" role="buttom">Edit</a></td>
 					<td>
 					<form method="POST" action="{{action('PostController@destroy', $post->id)}}">      
              			{{ csrf_field() }}
                 			<button class="btn btn-danger" type="submit" role="button" name="action">Delete</button>  
             			</form>
-					</td>
+					</td>				
+				@endif
 				</tr>
         	@endforeach
 

@@ -12,12 +12,12 @@
                 <label for="exampleTextarea">Description of Content</label>
                 <textarea class="form-control" id="exampleTextarea" name="content" rows="3"></textarea>
                 </div>
-                {{-- @foreach ($categories as $category)
-                
-                        <input class="form-check-input" type="checkbox" value="{{$category->id}}" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">{{$category->name}}</label>
-                
-                @endforeach --}}
+                @foreach ($categories as $category)                
+                    <div class="category_container">        
+                        <input class="form-check-input" type="radio" name="category" value="{{$category->id}}" id="defaultCheck{{$category->id}}">
+                        <label class="form-check-label" for="defaultCheck1">{{$category->name}}</label>       
+                    </div>         
+                @endforeach
                 <div class="form-group">
                 <label for="exampleInputFile">File input</label>
                 <input type="file" class="form-control-file" id="exampleInputFile" name="images" aria-describedby="fileHelp" accept="images">

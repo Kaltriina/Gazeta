@@ -41,3 +41,7 @@ Route::post('posts/{id}/update', 'PostController@update')->name('postController.
 Route::get('posts/{id}/show','PostController@show');
 Route::get('posts/{id}/edit', 'PostController@edit');
 Route::post('posts/{id}/destroy', 'PostController@destroy');
+
+Route::get('category', 'CategoryController@index');
+Route::get('category/index', 'CategoryController@index');
+Route::get('category', 'CategoryController@index');

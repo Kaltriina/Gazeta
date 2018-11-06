@@ -6,6 +6,7 @@
     <p>{{$show->content}}</p>
     <p><img src="/images/{{$show->images}}"></p>
     <p>{{$show->user->name}}</p>
+    <p>{{$show->category->name}}</p>
     <p>{{$show->created_at->diffForHumans()}}</p>
 </div>
 @endsection

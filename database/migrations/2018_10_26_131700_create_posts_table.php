@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->string('images')->nullable();
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('category_id');
             $table->timestamps();
         });
     }
